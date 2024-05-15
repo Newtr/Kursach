@@ -5,6 +5,7 @@ import 'package:kursach/common_widget/round_icon_button.dart';
 import 'package:kursach/common_widget/round_textfield.dart';
 import 'package:kursach/view/login/rest_password.dart';
 import 'package:kursach/view/login/sign_up_view.dart';
+import 'package:kursach/view/on_boarding/on_boarding_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -63,7 +64,15 @@ class _LoginViewState extends State<LoginView> {
               const SizedBox(
                 height: 25,
               ),
-              RoundButton(title: "Login", onPressed: () {}),
+              RoundButton(
+                  title: "Login",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const OnBoardingView()),
+                    );
+                  }),
               const SizedBox(
                 height: 6,
               ),
