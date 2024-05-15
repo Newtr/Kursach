@@ -12,10 +12,11 @@ class _StarupViewState extends State<StartupView> {
   @override
   void initState() {
     super.initState();
+    goWelcomePage();
   }
 
   void goWelcomePage() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 3));
     welcomePage();
   }
 
