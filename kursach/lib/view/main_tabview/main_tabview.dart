@@ -4,6 +4,7 @@ import 'package:kursach/common_widget/tab_button.dart';
 import 'package:kursach/view/home/home_view.dart';
 import 'package:kursach/view/menu/menu_view.dart';
 import 'package:kursach/view/offer/offer_view.dart';
+import 'package:kursach/view/profile/profile_view.dart';
 
 class MainTabView extends StatefulWidget {
   const MainTabView({super.key});
@@ -93,7 +94,7 @@ class _MainTabViewState extends State<MainTabView> {
                     onTap: () {
                       if (selctTab != 3) {
                         selctTab = 3;
-                        //selectPageView = const ProfileView();
+                        selectPageView = const ProfileView();
                       }
                       if (mounted) {
                         setState(() {});
