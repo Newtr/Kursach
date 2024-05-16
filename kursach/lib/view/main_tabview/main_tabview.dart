@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kursach/common/color_extension.dart';
 import 'package:kursach/common_widget/tab_button.dart';
 import 'package:kursach/view/home/home_view.dart';
+import 'package:kursach/view/menu/menu_view.dart';
 
 class MainTabView extends StatefulWidget {
   const MainTabView({super.key});
@@ -61,7 +62,7 @@ class _MainTabViewState extends State<MainTabView> {
                     onTap: () {
                       if (selctTab != 0) {
                         selctTab = 0;
-                        //selectPageView = const MenuView();
+                        selectPageView = const MenuView();
                       }
                       if (mounted) {
                         setState(() {});
