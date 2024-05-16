@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:kursach/common_widget/round_icon_button.dart';
 
 import '../../common/color_extension.dart';
+import '../more/my_order_view.dart';
 
 class ItemDetailsView extends StatefulWidget {
   const ItemDetailsView({super.key});
@@ -88,7 +90,27 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        IgnorePointer(),
+                                        IgnorePointer(
+                                          ignoring: true,
+                                          child: RatingBar.builder(
+                                            initialRating: 4,
+                                            minRating: 1,
+                                            direction: Axis.horizontal,
+                                            allowHalfRating: true,
+                                            itemCount: 5,
+                                            itemSize: 20,
+                                            itemPadding:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 1.0),
+                                            itemBuilder: (context, _) => Icon(
+                                              Icons.star,
+                                              color: TColor.primary,
+                                            ),
+                                            onRatingUpdate: (rating) {
+                                              print(rating);
+                                            },
+                                          ),
+                                        ),
                                         const SizedBox(
                                           height: 4,
                                         ),
@@ -442,7 +464,13 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                                                 ],
                                               )),
                                           InkWell(
-                                            onTap: () {},
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const MyOrderView()));
+                                            },
                                             child: Container(
                                               width: 45,
                                               height: 45,
@@ -525,7 +553,12 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MyOrderView()));
+                        },
                         icon: Image.asset(
                           "assets/img/shopping_cart.png",
                           width: 25,
