@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kursach/common/color_extension.dart';
+import 'package:kursach/view/more/about_us_view.dart';
+import 'package:kursach/view/more/inbox_view.dart';
+import 'package:kursach/view/more/notificatioon_view.dart';
 import 'package:kursach/view/more/payment_details.dart';
 
 import 'my_order_view.dart';
@@ -117,21 +120,21 @@ class _MoreViewState extends State<MoreView> {
                                 MaterialPageRoute(
                                     builder: (context) => const MyOrderView()));
                           case "3":
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             const NotificationsView()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const NotificationsView()));
                           case "4":
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => const InboxView()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const InboxView()));
                           case "5":
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => const AboutUsView()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const AboutUsView()));
                           case "6":
                           // ServiceCall.logout();
 
