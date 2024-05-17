@@ -3,6 +3,7 @@ import 'package:kursach/common/color_extension.dart';
 import 'package:kursach/common_widget/tab_button.dart';
 import 'package:kursach/view/home/home_view.dart';
 import 'package:kursach/view/menu/menu_view.dart';
+import 'package:kursach/view/more/more_view.dart';
 import 'package:kursach/view/offer/offer_view.dart';
 import 'package:kursach/view/profile/profile_view.dart';
 
@@ -107,7 +108,7 @@ class _MainTabViewState extends State<MainTabView> {
                     onTap: () {
                       if (selctTab != 4) {
                         selctTab = 4;
-                        //selectPageView = const  MoreView();
+                        selectPageView = const MoreView();
                       }
                       if (mounted) {
                         setState(() {});
