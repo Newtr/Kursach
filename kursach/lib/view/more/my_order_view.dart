@@ -336,7 +336,16 @@ class _MyOrderViewState extends State<MyOrderView> {
                     const SizedBox(
                       height: 25,
                     ),
-                    RoundButton(title: "Checkout", onPressed: () {}),
+                    RoundButton(
+                        title: "Checkout",
+                        onPressed: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => const CheckoutView(),
+                          //   ),
+                          // );
+                        }),
                     const SizedBox(
                       height: 20,
                     ),

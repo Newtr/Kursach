@@ -6,6 +6,7 @@ import 'package:kursach/common_widget/popular_resutaurant_row.dart';
 import 'package:kursach/common_widget/recent_item_row.dart';
 import 'package:kursach/common_widget/round_textfield.dart';
 import 'package:kursach/common_widget/view_all_title_row.dart';
+import 'package:kursach/view/more/my_order_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -120,7 +121,12 @@ class _HomeViewState extends State<HomeView> {
                               fontWeight: FontWeight.w800),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MyOrderView()));
+                          },
                           icon: Image.asset(
                             "assets/img/shopping_cart.png",
                             width: 25,
