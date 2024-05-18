@@ -61,7 +61,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => NewPasswordView(),
+                        builder: (context) => const NewPasswordView(),
                       ),
                     );
                     //btnSubmit();
