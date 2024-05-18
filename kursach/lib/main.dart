@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kursach/view/login/welcome_view.dart';
 import 'package:kursach/view/on_boarding/startup_view.dart';
 
 void main() {

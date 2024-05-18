@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kursach/common/color_extension.dart';
 import 'package:kursach/common_widget/round_button.dart';
-import 'package:kursach/common_widget/round_textfield.dart';
 import 'package:kursach/view/login/new_password.dart';
-import 'package:kursach/view/login/sign_up_view.dart';
 import 'package:otp_pin_field/otp_pin_field.dart';
 
 class OTPView extends StatefulWidget {
@@ -132,7 +130,7 @@ class _OTPViewState extends State<OTPView> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => NewPasswordView(),
+                        builder: (context) => const NewPasswordView(),
                       ),
                     );
                     //btnSubmit();
