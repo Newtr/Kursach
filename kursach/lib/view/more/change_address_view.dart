@@ -97,44 +97,45 @@ class _ChangeAddressViewState extends State<ChangeAddressView> {
           );
         },
       ),
-      // bottomNavigationBar: BottomAppBar(
-      //     child: SafeArea(
-      //         child: Column(
-      //   mainAxisSize: MainAxisSize.min,
-      //   children: [
-      //     Padding(
-      //       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-      //       child: RoundTextfield(
-      //         hintText: "Search Address",
-      //         left: Icon(Icons.search, color: TColor.primaryText),
-      //       ),
-      //     ),
-      //     Padding(
-      //       padding: const EdgeInsets.symmetric(horizontal: 25),
-      //       child: Row(children: [
-      //         Image.asset('assets/img/fav_icon.png', width: 35, height: 35),
-      //         const SizedBox(
-      //           width: 8,
-      //         ),
-      //         Expanded(
-      //           child: Text(
-      //             "Choose a saved place",
-      //             style: TextStyle(
-      //                 color: TColor.primaryText,
-      //                 fontSize: 14,
-      //                 fontWeight: FontWeight.w600),
-      //           ),
-      //         ),
-      //         Image.asset(
-      //           'assets/img/btn_next.png',
-      //           width: 15,
-      //           height: 15,
-      //           color: TColor.primaryText,
-      //         )
-      //       ]),
-      //     ),
-      //   ],
-      // ))),
+      bottomNavigationBar: BottomAppBar(
+          child: SafeArea(
+              child: SingleChildScrollView(
+                  child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+            child: RoundTextfield(
+              hintText: "Search Address",
+              left: Icon(Icons.search, color: TColor.primaryText),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Row(children: [
+              Image.asset('assets/img/fav_icon.png', width: 35, height: 35),
+              const SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                child: Text(
+                  "Choose a saved place",
+                  style: TextStyle(
+                      color: TColor.primaryText,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600),
+                ),
+              ),
+              Image.asset(
+                'assets/img/btn_next.png',
+                width: 15,
+                height: 15,
+                color: TColor.primaryText,
+              )
+            ]),
+          ),
+        ],
+      )))),
     );
   }
 }
