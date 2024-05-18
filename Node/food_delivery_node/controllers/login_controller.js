@@ -1,6 +1,6 @@
 var db = require('./../helpers/db_helpers')
 var helper =  require('./../helpers/helpers')
-var multiparty = require('multiparty')
+// var multiparty = require('multiparty')
 var imageSavePath = "./public/img/"
 
 module.exports.controller = (app, io, socket_list ) => {
