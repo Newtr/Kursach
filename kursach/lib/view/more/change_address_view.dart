@@ -76,7 +76,7 @@ class _ChangeAddressViewState extends State<ChangeAddressView> {
         ),
       ),
       body: CustomGoogleMapMarkerBuilder(
-        screenshotDelay: const Duration(seconds: 4),
+        //screenshotDelay: const Duration(seconds: 4),
         customMarkers: _customMarkers,
         builder: (BuildContext context, Set<Marker>? markers) {
           if (markers == null) {
@@ -99,8 +99,7 @@ class _ChangeAddressViewState extends State<ChangeAddressView> {
       ),
       bottomNavigationBar: BottomAppBar(
           child: SafeArea(
-              child: SingleChildScrollView(
-                  child: Column(
+              child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
@@ -135,7 +134,7 @@ class _ChangeAddressViewState extends State<ChangeAddressView> {
             ]),
           ),
         ],
-      )))),
+      ))),
     );
   }
 }

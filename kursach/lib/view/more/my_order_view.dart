@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:kursach/common/color_extension.dart';
 import 'package:kursach/common_widget/round_button.dart';
-import 'package:kursach/view/more/checkout_view.dart';
+
+import 'checkout_view.dart';
 
 class MyOrderView extends StatefulWidget {
   const MyOrderView({super.key});

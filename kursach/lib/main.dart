@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:kursach/common/color_extension.dart';
 import 'package:kursach/common/locator.dart';
-import 'package:kursach/common/my_http_overrides.dart';
 import 'package:kursach/common/service_call.dart';
 import 'package:kursach/view/login/welcome_view.dart';
 import 'package:kursach/view/main_tabview/main_tabview.dart';
@@ -12,6 +11,7 @@ import 'package:kursach/view/on_boarding/startup_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'common/globs.dart';
+import 'common/my_http_overrides.dart';
 
 SharedPreferences? prefs;
 void main() async {

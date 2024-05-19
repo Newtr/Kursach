@@ -1,14 +1,15 @@
 var moment = require('moment-timezone');
 var fs = require('fs');
+const { format } = require('path');
 
 const app_debug_mode = true;
-const timezone_name = "Europe/Minsk";
+const timezone_name = "Asia/Kolkata";
 const msg_server_internal_error = "Server Internal Error"
 
 module.exports = {
 
-    ImagePath:() => {
-        return "http://localhost:3001/img/";
+    ImagePath: () => {
+        return "http://192.168.0.106:3001/img/";
     },
 
     ThrowHtmlError: (err, res) => {
@@ -125,8 +126,17 @@ module.exports = {
 
     serverYYYYMMDDHHmmss:()=>{
         return serverYYYYMMDDHHmmss();
-    }
+    },
+    
+    fileNameGenerate: (extension) => {
+        var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        var result = '';
+        for (let i = 10; i > 0; i--) result += chars[Math.floor(Math.random() * chars.length)];
+        return serverDateTime('YYYYMMDDHHmmssms') + result + '.' + extension;
+    },
+
 }
+
 
 function serverDateTime(format) {
     var jun = moment(new Date());

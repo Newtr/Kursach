@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:kursach/common/color_extension.dart';
 import 'package:kursach/common/extension.dart';
-import 'package:kursach/common/globs.dart';
-import 'package:kursach/common/service_call.dart';
 import 'package:kursach/common_widget/round_button.dart';
-import 'package:kursach/common_widget/round_textfield.dart';
 import 'package:kursach/view/login/login_view.dart';
-import 'package:kursach/view/login/otp_view.dart';
-import 'package:kursach/view/on_boarding/on_boarding_view.dart';
+
+import '../../common/globs.dart';
+import '../../common/service_call.dart';
+import '../../common_widget/round_textfield.dart';
+import '../on_boarding/on_boarding_view.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
@@ -28,8 +28,6 @@ class _SignUpViewState extends State<SignUpView> {
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context).size;
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -107,23 +105,34 @@ class _SignUpViewState extends State<SignUpView> {
                   title: "Sign Up",
                   onPressed: () {
                     btnSignUp();
+                    //  Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) => const OTPView(),
+                    //       ),
+                    //     );
                   }),
+              const SizedBox(
+                height: 30,
+              ),
               TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginView()),
+                    MaterialPageRoute(
+                      builder: (context) => const LoginView(),
+                    ),
                   );
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Already have an Account?",
+                      "Already have an Account? ",
                       style: TextStyle(
                           color: TColor.secondaryText,
                           fontSize: 14,
-                          fontWeight: FontWeight.w700),
+                          fontWeight: FontWeight.w500),
                     ),
                     Text(
                       "Login",
@@ -142,6 +151,7 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
+  //TODO: Action
   void btnSignUp() {
     if (txtName.text.isEmpty) {
       mdShowAlert(Globs.appName, MSG.enterName, () {});

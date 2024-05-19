@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kursach/common/color_extension.dart';
 import 'package:kursach/common_widget/round_button.dart';
-import 'package:kursach/view/more/change_address_view.dart';
-import 'package:kursach/view/more/checkout_message_view.dart';
+
+import 'change_address_view.dart';
+import 'checkout_message_view.dart';
 
 class CheckoutView extends StatefulWidget {
   const CheckoutView({super.key});

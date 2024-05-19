@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kursach/common_widget/round_button.dart';
-import 'package:kursach/view/main_tabview/main_tabview.dart';
 
 import '../../common/color_extension.dart';
 
@@ -80,12 +79,7 @@ class _CheckoutMessageViewState extends State<CheckoutMessageView> {
           ),
           RoundButton(title: "Track My Order", onPressed: () {}),
           TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MainTabView()),
-              );
-            },
+            onPressed: () {},
             child: Text(
               "Back To Home",
               textAlign: TextAlign.center,

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kursach/common/color_extension.dart';
-import 'package:kursach/common/service_call.dart';
+
 import 'package:kursach/view/more/about_us_view.dart';
 import 'package:kursach/view/more/inbox_view.dart';
 import 'package:kursach/view/more/notificatioon_view.dart';
 import 'package:kursach/view/more/payment_details.dart';
 
+import '../../common/color_extension.dart';
+import '../../common/service_call.dart';
 import 'my_order_view.dart';
 
 class MoreView extends StatefulWidget {

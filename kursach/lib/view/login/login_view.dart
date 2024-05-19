@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:kursach/common/color_extension.dart';
 import 'package:kursach/common/extension.dart';
 import 'package:kursach/common/globs.dart';
-import 'package:kursach/common/service_call.dart';
 import 'package:kursach/common_widget/round_button.dart';
-import 'package:kursach/common_widget/round_icon_button.dart';
-import 'package:kursach/common_widget/round_textfield.dart';
 import 'package:kursach/view/login/rest_password.dart';
 import 'package:kursach/view/login/sign_up_view.dart';
 import 'package:kursach/view/on_boarding/on_boarding_view.dart';
+
+import '../../common/service_call.dart';
+import '../../common_widget/round_icon_button.dart';
+import '../../common_widget/round_textfield.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -20,6 +21,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -71,21 +73,17 @@ class _LoginViewState extends State<LoginView> {
                   title: "Login",
                   onPressed: () {
                     btnLogin();
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => const OnBoardingView()),
-                    // );
                   }),
               const SizedBox(
-                height: 6,
+                height: 4,
               ),
               TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ResetPasswordView()),
+                      builder: (context) => const ResetPasswordView(),
+                    ),
                   );
                 },
                 child: Text(
@@ -131,21 +129,23 @@ class _LoginViewState extends State<LoginView> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SignUpView()),
+                    MaterialPageRoute(
+                      builder: (context) => const SignUpView(),
+                    ),
                   );
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Dont't have an Account?",
+                      "Don't have an Account? ",
                       style: TextStyle(
                           color: TColor.secondaryText,
                           fontSize: 14,
-                          fontWeight: FontWeight.w700),
+                          fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      "Sign up",
+                      "Sign Up",
                       style: TextStyle(
                           color: TColor.primary,
                           fontSize: 14,
@@ -161,6 +161,7 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
+  //TODO: Action
   void btnLogin() {
     if (!txtEmail.text.isEmail) {
       mdShowAlert(Globs.appName, MSG.enterEmail, () {});
@@ -181,6 +182,8 @@ class _LoginViewState extends State<LoginView> {
     });
   }
 
+  //TODO: ServiceCall
+
   void serviceCallLogin(Map<String, dynamic> parameter) {
     Globs.showHUD();
 
@@ -188,8 +191,8 @@ class _LoginViewState extends State<LoginView> {
         withSuccess: (responseObj) async {
       Globs.hideHUD();
       if (responseObj[KKey.status] == "1") {
-        // Globs.udSet(responseObj[KKey.payload] as Map? ?? {}, Globs.userPayload);
-        // Globs.udBoolSet(true, Globs.userLogin);
+        Globs.udSet(responseObj[KKey.payload] as Map? ?? {}, Globs.userPayload);
+        Globs.udBoolSet(true, Globs.userLogin);
 
         Navigator.pushAndRemoveUntil(
             context,
