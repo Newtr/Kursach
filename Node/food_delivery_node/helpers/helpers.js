@@ -104,6 +104,17 @@ module.exports = {
         return result;
     },
 
+    createNumber: (length = 6) => {
+        var chars = "0123456789"
+        var result = '';
+        for (let i = length; i > 0; i--) {
+            result += chars[Math.floor(Math.random() * chars.length)];
+
+        }
+
+        return result;
+    },
+
     Dlog: (log) => {
         return Dlog(log);
     },
