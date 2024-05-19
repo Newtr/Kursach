@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kursach/common/color_extension.dart';
+import 'package:kursach/common/extension.dart';
+import 'package:kursach/common/globs.dart';
+import 'package:kursach/common/service_call.dart';
 import 'package:kursach/common_widget/round_button.dart';
 import 'package:kursach/common_widget/round_icon_button.dart';
 import 'package:kursach/common_widget/round_textfield.dart';
@@ -67,11 +70,12 @@ class _LoginViewState extends State<LoginView> {
               RoundButton(
                   title: "Login",
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const OnBoardingView()),
-                    );
+                    btnLogin();
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => const OnBoardingView()),
+                    // );
                   }),
               const SizedBox(
                 height: 6,
@@ -155,5 +159,51 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     );
+  }
+
+  void btnLogin() {
+    if (!txtEmail.text.isEmail) {
+      mdShowAlert(Globs.appName, MSG.enterEmail, () {});
+      return;
+    }
+
+    if (txtPassword.text.length < 6) {
+      mdShowAlert(Globs.appName, MSG.enterPassword, () {});
+      return;
+    }
+
+    endEditing();
+
+    serviceCallLogin({
+      "email": txtEmail.text,
+      "password": txtPassword.text,
+      "push_token": ""
+    });
+  }
+
+  void serviceCallLogin(Map<String, dynamic> parameter) {
+    Globs.showHUD();
+
+    ServiceCall.post(parameter, SVKey.svLogin,
+        withSuccess: (responseObj) async {
+      Globs.hideHUD();
+      if (responseObj[KKey.status] == "1") {
+        // Globs.udSet(responseObj[KKey.payload] as Map? ?? {}, Globs.userPayload);
+        // Globs.udBoolSet(true, Globs.userLogin);
+
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const OnBoardingView(),
+            ),
+            (route) => false);
+      } else {
+        mdShowAlert(Globs.appName,
+            responseObj[KKey.message] as String? ?? MSG.fail, () {});
+      }
+    }, failure: (err) async {
+      Globs.hideHUD();
+      mdShowAlert(Globs.appName, err.toString(), () {});
+    });
   }
 }

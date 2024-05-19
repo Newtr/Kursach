@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:kursach/common/color_extension.dart';
+import 'package:kursach/common/extension.dart';
+import 'package:kursach/common/globs.dart';
+import 'package:kursach/common/service_call.dart';
 import 'package:kursach/common_widget/round_button.dart';
 import 'package:kursach/common_widget/round_textfield.dart';
 import 'package:kursach/view/login/login_view.dart';
 import 'package:kursach/view/login/otp_view.dart';
+import 'package:kursach/view/on_boarding/on_boarding_view.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
@@ -100,13 +106,7 @@ class _SignUpViewState extends State<SignUpView> {
               RoundButton(
                   title: "Sign Up",
                   onPressed: () {
-                    //btnSignUp();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const OTPView(),
-                      ),
-                    );
+                    btnSignUp();
                   }),
               TextButton(
                 onPressed: () {
@@ -140,5 +140,77 @@ class _SignUpViewState extends State<SignUpView> {
         ),
       ),
     );
+  }
+
+  void btnSignUp() {
+    if (txtName.text.isEmpty) {
+      mdShowAlert(Globs.appName, MSG.enterName, () {});
+      return;
+    }
+
+    if (!txtEmail.text.isEmail) {
+      mdShowAlert(Globs.appName, MSG.enterEmail, () {});
+      return;
+    }
+
+    if (txtMobile.text.isEmpty) {
+      mdShowAlert(Globs.appName, MSG.enterMobile, () {});
+      return;
+    }
+
+    if (txtAddress.text.isEmpty) {
+      mdShowAlert(Globs.appName, MSG.enterAddress, () {});
+      return;
+    }
+
+    if (txtPassword.text.length < 6) {
+      mdShowAlert(Globs.appName, MSG.enterPassword, () {});
+      return;
+    }
+
+    if (txtPassword.text != txtConfirmPassword.text) {
+      mdShowAlert(Globs.appName, MSG.enterPasswordNotMatch, () {});
+      return;
+    }
+
+    endEditing();
+
+    serviceCallSignUp({
+      "name": txtName.text,
+      "mobile": txtMobile.text,
+      "email": txtEmail.text,
+      "address": txtAddress.text,
+      "password": txtPassword.text,
+      "push_token": "",
+      "device_type": Platform.isAndroid ? "A" : "I"
+    });
+  }
+
+  //TODO: ServiceCall
+
+  void serviceCallSignUp(Map<String, dynamic> parameter) {
+    Globs.showHUD();
+
+    ServiceCall.post(parameter, SVKey.svSignUp,
+        withSuccess: (responseObj) async {
+      Globs.hideHUD();
+      if (responseObj[KKey.status] == "1") {
+        Globs.udSet(responseObj[KKey.payload] as Map? ?? {}, Globs.userPayload);
+        Globs.udBoolSet(true, Globs.userLogin);
+
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const OnBoardingView(),
+            ),
+            (route) => false);
+      } else {
+        mdShowAlert(Globs.appName,
+            responseObj[KKey.message] as String? ?? MSG.fail, () {});
+      }
+    }, failure: (err) async {
+      Globs.hideHUD();
+      mdShowAlert(Globs.appName, err.toString(), () {});
+    });
   }
 }

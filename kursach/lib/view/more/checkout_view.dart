@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kursach/common/color_extension.dart';
 import 'package:kursach/common_widget/round_button.dart';
 import 'package:kursach/view/more/change_address_view.dart';
+import 'package:kursach/view/more/checkout_message_view.dart';
 
 class CheckoutView extends StatefulWidget {
   const CheckoutView({super.key});
@@ -327,13 +328,13 @@ class _CheckoutViewState extends State<CheckoutView> {
                 child: RoundButton(
                     title: "Send Order",
                     onPressed: () {
-                      // showModalBottomSheet(
-                      //     context: context,
-                      //     backgroundColor: Colors.transparent,
-                      //     isScrollControlled: true,
-                      //     builder: (context) {
-                      //       return const CheckoutMessageView();
-                      //     });
+                      showModalBottomSheet(
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          isScrollControlled: true,
+                          builder: (context) {
+                            return const CheckoutMessageView();
+                          });
                     }),
               ),
             ],
