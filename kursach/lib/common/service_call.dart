@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:kursach/common/globs.dart';
+import 'package:kursach/common/locator.dart';
 
 typedef ResSuccess = Future<void> Function(Map<String, dynamic>);
 typedef ResFailure = Future<void> Function(dynamic);
 
 class ServiceCall {
-  // static final NavigationService navigationService =
-  //     locator<NavigationService>();
+  static final NavigationService navigationService =
+      locator<NavigationService>();
   static Map userPayload = {};
 
   static void post(Map<String, dynamic> parameter, String path,
@@ -45,9 +46,9 @@ class ServiceCall {
     });
   }
 
-  // static logout() {
-  //   Globs.udBoolSet(false, Globs.userLogin);
-  //   userPayload = {};
-  //   navigationService.navigateTo("welcome");
-  // }
+  static logout() {
+    Globs.udBoolSet(false, Globs.userLogin);
+    userPayload = {};
+    navigationService.navigateTo("welcome");
+  }
 }

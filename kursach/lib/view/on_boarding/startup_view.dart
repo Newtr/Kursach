@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kursach/view/login/welcome_view.dart';
+import 'package:kursach/view/main_tabview/main_tabview.dart';
+
+import '../../common/globs.dart';
 
 class StartupView extends StatefulWidget {
   const StartupView({super.key});
@@ -21,8 +24,13 @@ class _StarupViewState extends State<StartupView> {
   }
 
   void welcomePage() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const WelcomeView()));
+    if (Globs.udValueBool(Globs.userLogin)) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const MainTabView()));
+    } else {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const WelcomeView()));
+    }
   }
 
   @override

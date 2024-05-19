@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kursach/common/color_extension.dart';
+import 'package:kursach/common/service_call.dart';
 import 'package:kursach/view/more/about_us_view.dart';
 import 'package:kursach/view/more/inbox_view.dart';
 import 'package:kursach/view/more/notificatioon_view.dart';
@@ -136,7 +137,7 @@ class _MoreViewState extends State<MoreView> {
                                 MaterialPageRoute(
                                     builder: (context) => const AboutUsView()));
                           case "6":
-                          // ServiceCall.logout();
+                            ServiceCall.logout();
 
                           default:
                         }
