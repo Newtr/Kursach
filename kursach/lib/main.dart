@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:kursach/common/color_extension.dart';
 import 'package:kursach/view/on_boarding/startup_view.dart';
 
 void main() {
   runApp(const MyApp());
+}
+
+void configLoading() {
+  EasyLoading.instance
+    ..indicatorType = EasyLoadingIndicatorType.ring
+    ..loadingStyle = EasyLoadingStyle.custom
+    ..indicatorSize = 45.0
+    ..radius = 5.0
+    ..progressColor = TColor.primaryText
+    ..backgroundColor = TColor.primary
+    ..indicatorColor = Colors.yellow
+    ..textColor = TColor.primaryText
+    ..userInteractions = false
+    ..dismissOnTap = false;
 }
 
 class MyApp extends StatelessWidget {
@@ -35,6 +51,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const StartupView(),
+      builder: (context, child) {
+        return FlutterEasyLoading(child: child);
+      },
     );
   }
 }
