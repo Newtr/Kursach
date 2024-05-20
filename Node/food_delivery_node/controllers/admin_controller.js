@@ -336,6 +336,7 @@ module.exports.controller = (app, io, socket_list) => {
                                     helper.ThrowHtmlError(err);
                                     return;
                                 }
+
                             });
                         });
                         
@@ -707,29 +708,32 @@ module.exports.controller = (app, io, socket_list) => {
 
                         var newPath = imageSavePath + imageFileName;
 
-                        fs.rename(files.image[0].path, newPath, (err) => {
-
+                        fs.copyFile(files.image[0].path, newPath, (err) => {
                             if (err) {
                                 helper.ThrowHtmlError(err, res);
                                 return;
-                            } else {
+                            }
+                            fs.unlink(files.image[0].path, (err) => {
+                                if (err) {
+                                    helper.ThrowHtmlError(err, res);
+                                    return;
+                                }
                                 db.query("INSERT INTO `menu_detail`( `name`, `image`, `create_date`, `update_date`) VALUES (?,?, NOW(), NOW())", [
                                     reqObj.name[0], imageFileName
                                 ], (err, result) => {
-
                                     if (err) {
                                         helper.ThrowHtmlError(err, res);
                                         return;
                                     }
-
                                     if (result) {
                                         res.json({ "status": "1", "message": msg_add_menu })
                                     } else {
                                         res.json({ "status": "0", "message": msg_fail })
                                     }
                                 })
-                            }
-                        })
+                            });
+                        });
+                        
 
                     })
                 })
@@ -766,12 +770,19 @@ module.exports.controller = (app, io, socket_list) => {
                         imageFileName = "menu/" + helper.fileNameGenerate(extension);
                         newPath = imageSavePath + imageFileName;
                         condition = " `image` = '" + imageFileName + "',"
-                        fs.rename(files.image[0].path, newPath, (err) => {
+                        fs.copyFile(files.image[0].path, newPath, (err) => {
                             if (err) {
                                 helper.ThrowHtmlError(err);
                                 return;
                             }
-                        })
+                            fs.unlink(files.image[0].path, (err) => {
+                                if (err) {
+                                    helper.ThrowHtmlError(err);
+                                    return;
+                                }
+                            });
+                        });
+                        
                     }
 
                     db.query("UPDATE `menu_detail` SET `name` = ?, " + condition + " `update_date` = NOW() WHERE `status` < ? AND `menu_id` = ? ", [
@@ -864,29 +875,32 @@ module.exports.controller = (app, io, socket_list) => {
 
                         var newPath = imageSavePath + imageFileName;
 
-                        fs.rename(files.image[0].path, newPath, (err) => {
-
+                        fs.copyFile(files.image[0].path, newPath, (err) => {
                             if (err) {
                                 helper.ThrowHtmlError(err, res);
                                 return;
-                            } else {
+                            }
+                            fs.unlink(files.image[0].path, (err) => {
+                                if (err) {
+                                    helper.ThrowHtmlError(err, res);
+                                    return;
+                                }
                                 db.query("INSERT INTO `menu_item_detail`(`menu_id`, `restaurant_id`, `category_id`, `food_type`, `name`, `image`, `is_portion_allow`, `is_custom_ingredient_allow`, `description`, `base_price`, `create_date`, `update_date`) VALUES (?,?,?, ?,?,?, ?,?,?, ?,NOW(), NOW())", [
-                                    reqObj.menu_id[0], reqObj.restaurant_id[0], reqObj.category_id[0], reqObj.food_type[0], reqObj.name[0], imageFileName, reqObj.is_portion_allow[0], reqObj.is_custom_ingredient_allow[0], reqObj.description[0], reqObj.base_price[0],
-                                ], (err, result) => {
-
+                                    reqObj.menu_id[0], reqObj.restaurant_id[0], reqObj.category_id[0], reqObj.food_type[0], reqObj.name[0], imageFileName, reqObj.is_portion_allow[0], reqObj.is_custom_ingredient_allow[0], reqObj.description[0], reqObj.base_price[0
+                                ]], (err, result) => {
                                     if (err) {
                                         helper.ThrowHtmlError(err, res);
                                         return;
                                     }
-
                                     if (result) {
                                         res.json({ "status": "1", "message": msg_add_menu_item })
                                     } else {
                                         res.json({ "status": "0", "message": msg_fail })
                                     }
                                 })
-                            }
-                        })
+                            });
+                        });
+                        
 
                     })
                 })
@@ -923,12 +937,19 @@ module.exports.controller = (app, io, socket_list) => {
                         imageFileName = "menu_item/" + helper.fileNameGenerate(extension);
                         newPath = imageSavePath + imageFileName;
                         condition = " `image` = '" + imageFileName + "',"
-                        fs.rename(files.image[0].path, newPath, (err) => {
+                        fs.copyFile(files.image[0].path, newPath, (err) => {
                             if (err) {
                                 helper.ThrowHtmlError(err);
                                 return;
                             }
-                        })
+                            fs.unlink(files.image[0].path, (err) => {
+                                if (err) {
+                                    helper.ThrowHtmlError(err);
+                                    return;
+                                }
+                            });
+                        });
+                        
                     }
 
                     db.query("UPDATE `menu_item_detail` SET  `menu_id` = ?, `category_id` = ?, `food_type` = ?, `name` = ?,  `is_portion_allow` = ?, `is_custom_ingredient_allow` = ?, `description` = ?, `base_price` = ?, " + condition + " `update_date` = NOW() WHERE `status` < ? AND `menu_item_id` = ? AND `restaurant_id` = ? ", [
